@@ -5,18 +5,56 @@
     xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <content>
-            <HBox id="hbox">
+            <HBox id="hbox_employee">
                 <Label id="label" text="{i18n>labelEmployee}" labelFor="inputEmployee" class="sapUiSmallMargin" />
-                <Input id="inputEmployee" maxLength="6" width="200px" class="sapUiSmallMarginEnd" liveChange="onValidate"/>
-                <Label id="labelCountry" text="{i18n>labelCountry}" labelFor="slCountry" class="sapUiSmallMargin" visible="false"/>
-                <Select id="slCountry" forceSelection="false" visible="false">
+                <Input id="inputEmployee" value="{/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd"/>
+                <Label id="labelCountry" text="{i18n>labelCountry}" labelFor="slCountry" class="sapUiSmallMargin" />
+                <Select id="slCountry" selectedKey="{/CountryKey}" forceSelection="false" items="{/ListCountry}" >
                     <items>
-                        <core:Item id="_IDGenItem1" key="US" text="{i18n>countryUS}"/>
-                        <core:Item id="_IDGenItem2" key="UK" text="{i18n>countryUK}"/>
-                        <core:Item id="_IDGenItem3" key="ES" text="{i18n>countryES}"/>
+                        <core:Item id="_IDGenItem1" key="{Key}" text="{Text}"/>
                     </items>
                 </Select>
-
+                <Button id="btnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class="sapUiSmallMarginEnd"/>
+                <Button id="btnClearFilter" text="{i18n>btnClearFilter}" icon="sap-icon://clear-filter" press="onFilterClear" class="sapUiSmallMarginEnd"/>
+                
+            </HBox>
+            <HBox id="_IDGenHBox1" >
+            <Panel id="_IDGenPanel1" >
+            <Table id="tableEmployee" items="{/Employees}">
+            <columns>
+            <Column id="_IDGenColumn1" >
+                <header>
+                    <Label id="_IDGenLabel1" text="{i18n>tableId}"/>
+                </header>
+            </Column>
+            <Column id="_IDGenColumn2" >
+                <header>
+                    <Label id="_IDGenLabel2" text="{i18n>tableName}"/>
+                </header>
+            </Column>
+            <Column id="_IDGenColumn3" >
+                <header>
+                    <Label id="_IDGenLabel3" text="{i18n>tableCountry}"/>
+                </header>
+            </Column>
+            <Column id="_IDGenColumn4" >
+                <header>
+                    <Label id="_IDGenLabel4" text="{i18n>tableCity}"/>
+                </header>
+            </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="_IDGenColumnListItem1" >
+                <cells>
+                    <Label id="_IDGenLabel5" text="{EmployeeID}"></Label>
+                    <Label id="_IDGenLabel6" text="{LastName}, {FirstName}"></Label>
+                    <Label id="_IDGenLabel7" text="{Country}"></Label>
+                    <Label id="_IDGenLabel8" text="{City}"></Label>
+                </cells>
+                </ColumnListItem>
+            </items>
+            </Table>
+            </Panel>
             </HBox>
         </content>
     </Page>
