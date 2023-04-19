@@ -75,6 +75,17 @@ sap.ui.define(
       oBinding.filter(filters);
     };
 
+    function showPostalCode(oEvent) {
+      debugger;
+      var itemPressed = oEvent.getSource();
+      var oContext = itemPressed.getBindingContext();
+      var objectContext = oContext.getObject();
+
+      sap.m.MessageToast.show(objectContext.PostalCode);
+
+      
+    }
+
     var Main = Controller.extend(
       "logaligroup.employees.controller.MainView",
       {}
@@ -101,6 +112,7 @@ sap.ui.define(
     Main.prototype.onInit = onInit;
     Main.prototype.onFilter = onFilter;
     Main.prototype.onFilterClear = onFilterClear;
+    Main.prototype.showPostalCode = showPostalCode;
     return Main;
   }
 );
