@@ -1,0 +1,88 @@
+<mvc:View controllerName="logaligroup.lists.controller.MainView"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout" displayBlock="true">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <IconTabBar id="_IDGenIconTabBar1">
+                <items>
+                    <IconTabFilter id="_IDGenIconTabFilter1" text="{i18n>objectList}">
+                        <List id="_IDGenList1" items="{path : '/Products',
+                                                       filters : [{
+                                                        path : 'Brand',
+                                                        operator: 'EQ',
+                                                        value1 : 'Compaq'
+                                                       }]}">
+                            <items>
+                                <ObjectListItem id="_IDGenObjectListItem1" title="{Material} {Brand} {Model}" number="{Price}" numberUnit="{Currency}" type="Detail">
+                                    <ObjectAttribute id="_IDGenObjectAttribute1" text="{Brand}">
+                                    </ObjectAttribute>
+                                    <ObjectAttribute id="_IDGenObjectAttribute2" text="{Weight}">
+                                    </ObjectAttribute>
+                                </ObjectListItem>
+                            </items>
+                        </List>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IDGenIconTabFilter2" text="{i18n>standardList}">
+                        <Select id="_IDGenSelect2" selectedKey="{/typeSelection}">
+                            <items>
+                                <core:Item id="_IDGenItem2" key="None" text="{i18n>none}"/>
+                                <core:Item id="_IDGenItem3" key="MultiSelect" text="{i18n>multiSelect}"/>
+                                <core:Item id="_IDGenItem4" key="SingleSelect" text="{i18n>selectSingle}"/>
+                                <core:Item id="_IDGenItem5" key="SingleSelectLeft" text="{i18n>singleSelectLeft}"/>
+                                <core:Item id="_IDGenItem6" key="SingleSelectMaster" text="{i18n>singleSelectMaster}"/>
+                            </items>
+                        </Select>
+
+                        <Button id="_IDGenButton1" text="{i18n>showSelectedItems}" press="onShowSelectedRow" class="sapUiSmallMarginBegin"></Button>
+                        <Button id="_IDGenButton2" text="{i18n>deleteSelectedItems}" press="onDeleteSelectedRow" class="sapUiSmallMarginBegin"></Button>
+
+                        <List id="_IDGenList2" items="{ path : '/Products',
+                                                        sorter: {
+                                                            path : 'Brand',
+                                                            descending : true,
+                                                            group : true
+                                                        },
+                                                        groupHeaderFactory : '.getGroupHeader' }" mode="{/typeSelection}">
+                            <items>
+                                <StandardListItem id="_IDGenStandardListItem1" title="{Material} {Brand} {Model}" description="{Weight}" info="{Price} {Currency}" type="Active"/>
+                            </items>
+                        </List>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IDGenIconTabFilter3" text="{i18n>inputList}">
+                        <List id="_IDGenList3" items="{/Products}" mode="Delete" delete="onDeleteRow">
+                            <items>
+                                <InputListItem id="_IDGenInputListItem1" label="{Brand}">
+                                    <Select id="_IDGenSelect1" items="{Properties}">
+                                        <core:Item id="_IDGenItem1" key="{Id}" text="{Text}"></core:Item>
+                                    </Select>
+                                </InputListItem>
+                            </items>
+                        </List>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IDGenIconTabFilter4" text="{i18n>notificactionList}">
+                        <List id="_IDGenList4" items="{/News}">
+                            <items>
+                                <NotificationListItem id="_IDGenNotificationListItem1" title="{Title}" description="{Description}" unread="{Unread}" authorName="{Author}" priority="{Priority}" showCloseButton="{ShowCloseButton}"/>
+                            </items>
+                        </List>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IDGenIconTabFilter5" text="{i18n>customList}">
+                        <List id="_IDGenList5" items="{/News}">
+                            <items>
+                                <CustomListItem id="_IDGenCustomListItem1">
+                                    <layout:Grid id="_IDGenGrid1" defaultSpan="XL3 L3 M6 S12">
+                                        <Text id="_IDGenText1" text="{Title}"/>
+                                        <Text id="_IDGenText2" text="{Author}"/>
+                                        <Text id="_IDGenText3" text="{Description}"/>
+                                    </layout:Grid>
+                                </CustomListItem>
+                            </items>
+                        </List>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

@@ -6,11 +6,11 @@
         <content>
             <HBox id="hbox_employee">
                 <Label id="label" text="{i18n>labelEmployee}" labelFor="inputEmployee" class="sapUiSmallMargin" />
-                <Input id="inputEmployee" value="{/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd"/>
+                <Input id="inputEmployee" value="{countries>/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd"/>
                 <Label id="labelCountry" text="{i18n>labelCountry}" labelFor="slCountry" class="sapUiSmallMargin" />
-                <Select id="slCountry" selectedKey="{/CountryKey}" forceSelection="false" items="{/ListCountry}">
+                <Select id="slCountry" selectedKey="{countries>/CountryKey}" forceSelection="false" items="{countries>/ListCountry}">
                     <items>
-                        <core:Item id="_IDGenItem1" key="{Key}" text="{Text}"/>
+                        <core:Item id="_IDGenItem1" key="{countries>Key}" text="{countries>Text}"/>
                     </items>
                 </Select>
                 <Button id="btnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class="sapUiSmallMarginEnd"/>
@@ -19,7 +19,7 @@
             </HBox>
             <HBox id="_IDGenHBox1">
                 <Panel id="_IDGenPanel1">
-                    <Table id="tableEmployee" items="{/Employees}">
+                    <Table id="tableEmployee" items="{employees>/Employees}">
                         <columns>
                             <Column id="_IDGenColumn1">
                                 <header>
@@ -45,10 +45,10 @@
                         <items>
                             <ColumnListItem id="_IDGenColumnListItem1" type="Active" press="showPostalCode">
                                 <cells>
-                                    <Label id="_IDGenLabel5" text="{EmployeeID}"></Label>
-                                    <Label id="_IDGenLabel6" text="{LastName}, {FirstName}"></Label>
-                                    <Label id="_IDGenLabel7" text="{Country}"></Label>
-                                    <Label id="_IDGenLabel8" text="{City}"></Label>
+                                    <Label id="_IDGenLabel5" text="{employees>EmployeeID}"></Label>
+                                    <Label id="_IDGenLabel6" text="{employees>LastName}, {employees>FirstName}"></Label>
+                                    <Label id="_IDGenLabel7" text="{employees>Country}"></Label>
+                                    <Label id="_IDGenLabel8" text="{employees>City}"></Label>
                                 </cells>
                             </ColumnListItem>
                         </items>
