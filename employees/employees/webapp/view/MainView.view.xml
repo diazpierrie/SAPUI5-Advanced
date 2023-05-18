@@ -19,24 +19,27 @@
             </HBox>
             <HBox id="_IDGenHBox1">
                 <Panel id="_IDGenPanel1">
+                    <Button id="btnShowCity" text="{18n>btnShowCity}" press="onShowCity" visible="{config>visibleBtnShowCity}"/>
+                    <Button id="btnHideCity" text="{18n>btnHideCity}" press="onHideCity" visible="{config>visibleBtnHideCity}"/>                    
+                    
                     <Table id="tableEmployee" items="{employees>/Employees}">
                         <columns>
-                            <Column id="_IDGenColumn1">
+                            <Column id="_IDGenColumn1" visible="{config>visibleID}">
                                 <header>
                                     <Label id="_IDGenLabel1" text="{i18n>tableId}"/>
                                 </header>
                             </Column>
-                            <Column id="_IDGenColumn2">
+                            <Column id="_IDGenColumn2" visible="{config>visibleName}">
                                 <header>
                                     <Label id="_IDGenLabel2" text="{i18n>tableName}"/>
                                 </header>
                             </Column>
-                            <Column id="_IDGenColumn3">
+                            <Column id="_IDGenColumn3" visible="{config>visibleCountry}">
                                 <header>
                                     <Label id="_IDGenLabel3" text="{i18n>tableCountry}"/>
                                 </header>
                             </Column>
-                            <Column id="_IDGenColumn4">
+                            <Column id="_IDGenColumn4" visible="{config>visibleCity}">
                                 <header>
                                     <Label id="_IDGenLabel4" text="{i18n>tableCity}"/>
                                 </header>
