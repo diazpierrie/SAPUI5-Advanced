@@ -33,10 +33,10 @@ sap.ui.define(
         visibleName: true,
         visibleCountry: true,
         visibleCity: true,
-        visibleBtnShowCity: true,
-        visibleBtnHideCity: false
+        visibleBtnShowCity: false,
+        visibleBtnHideCity: true
       });      
-      oView.setModel(oJsonModelCountries, "config");
+      oView.setModel(oJsonModelConfig, "config");
 
     }
 
@@ -83,12 +83,16 @@ sap.ui.define(
 
     function onShowCity(oEvent) {
       var model = this.getView().getModel("config");
-      model.setProperty("visibleCity", true);      
+      model.setProperty("/visibleCity", true);      
+      model.setProperty("/visibleBtnShowCity", false);      
+      model.setProperty("/visibleBtnHideCity", true);      
     }
 
     function onHideCity(oEvent) {
       var model = this.getView().getModel("config");
-      model.setProperty("visibleCity", false);
+      model.setProperty("/visibleCity", false);
+      model.setProperty("/visibleBtnShowCity", true);
+      model.setProperty("/visibleBtnHideCity", false);
     }
 
     var Main = Controller.extend(
