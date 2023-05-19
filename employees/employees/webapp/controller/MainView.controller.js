@@ -101,93 +101,45 @@ sap.ui.define(
     }
 
     function showOrders(oEvent) {
-      var ordersTable = this.getView().byId("ordersTable");
-      ordersTable.destroyItems();
+      var iconPressed = oEvent.getSource();
+      var oContext = iconPressed.getBindingContext("employees");
 
-      var itemPressed = oEvent.getSource();
-      var oContext = itemPressed.getBindingContext("employees");
+      // if (!this._oDialogOrders) {
+      //   sap.ui.core.Fragment.load({
+      //     name: "logaligroup.employees.view.fragment.DialogOrders",
+      //     type: "XML",
+      //   }).then((o) => {
+      //     this._oDialogOrders = o;
+      //     this.getView().addDependent(this._oDialogOrders);
+      //   });
+      // }
 
-      var objectContext = oContext.getObject();
-      var orders = objectContext.Orders;
+      var control = undefined;
 
-      var ordersItems = [];
-
-      for (var i in orders) {
-        ordersItems.push(
-          new sap.m.ColumnListItem({
-            cells: [
-              new sap.m.Label({ text: orders[i].OrderID }),
-              new sap.m.Label({ text: orders[i].Freight }),
-              new sap.m.Label({ text: orders[i].ShipAddress }),
-            ],
-          })
-        );
+      if (!this._oDialogOrders) {
+       var meme = sap.ui.core.Fragment.load({
+          name: "logaligroup.employees.view.fragment.DialogOrders",
+        }).then((o) => {
+          console.log(o);
+          this._oDialogOrders = o
+          console.log(this._oDialogOrders);
+          this._oDialogOrders.bindElement("employees>" + oContext.getPath());
+          this._oDialogOrders.open();
+        });
       }
 
-      var newTable = new sap.m.Table({
-        width: "auto",
-        columns: [
-          new sap.m.Column({
-            header: new sap.m.Label({ text: "{i18n>orderID}" }),
-          }),
-          new sap.m.Column({
-            header: new sap.m.Label({ text: "{i18n>freight}" }),
-          }),
-          new sap.m.Column({
-            header: new sap.m.Label({ text: "{i18n>shipAddress}" }),
-          }),
-        ],
-        items: ordersItems,
-      }).addStyleClass("sapUiSmallMargin");
-      
-      ordersTable.addItem(newTable);    
-      
-      var newTableJSON = new sap.m.Table();
-      newTableJSON.setWidth("auto");
-      newTableJSON.addStyleClass("sapUiSmallMargin");
+      // if (!control) {
+      //   var meme = this.loadFragment({name: "logaligroup.employees.view.fragment.DialogOrders"}).then(function() {
 
-      var columnOrderID = new sap.m.Column();
-      var labelOrderID = new sap.m.Label();
-      labelOrderID.bindProperty("text", "i18n>orderID");
-      columnOrderID.setHeader(labelOrderID);
-      newTableJSON.addColumn(columnOrderID);
+      //     console.log(control);
+      //     meme.bindElement("employees" + oContext.getPath());
+      //     meme.open()
+      //   }).catch(o => console.log(o));
+      // }
+    }
 
-      var columnFreight = new sap.m.Column();
-      var labelFreight = new sap.m.Label();
-      labelFreight.bindProperty("text", "i18n>freight");
-      columnFreight.setHeader(labelFreight);
-      newTableJSON.addColumn(columnFreight);
-
-      var columnShipAddress = new sap.m.Column();
-      var labelShipAddress = new sap.m.Label();
-      labelShipAddress.bindProperty("text", "i18n>shipAddress");
-      columnShipAddress.setHeader(labelShipAddress);
-      newTableJSON.addColumn(columnShipAddress);
-
-      var columnListItem = new sap.m.ColumnListItem();
-
-      var cellOrderID = new sap.m.Label();
-      cellOrderID.bindProperty("text", "employees>OrderID");
-      columnListItem.addCell(cellOrderID);
-
-      var cellFreight = new sap.m.Label();
-      cellFreight.bindProperty("text", "employees>Freight");
-      columnListItem.addCell(cellFreight);
-
-      var cellShipAddress = new sap.m.Label();
-      cellShipAddress.bindProperty("text", "employees>ShipAddress");
-      columnListItem.addCell(cellShipAddress);
-
-      var oBindingInfo = {
-        model: "employees",
-        path: "Orders",
-        template: columnListItem
-      }
-
-      newTableJSON.bindAggregation("items", oBindingInfo)
-      newTableJSON.bindElement("employees>" + oContext.getPath());
-
-      ordersTable.addItem(newTableJSON);
+    function onCloseOrders() {
+      this._oDialogOrders.close();
     }
 
     var Main = Controller.extend(
@@ -220,6 +172,7 @@ sap.ui.define(
     Main.prototype.onShowCity = onShowCity;
     Main.prototype.onHideCity = onHideCity;
     Main.prototype.showOrders = showOrders;
+    Main.prototype.onCloseOrders = onCloseOrders;
     return Main;
   }
 );
