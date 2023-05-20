@@ -15,23 +15,25 @@ sap.ui.define(
     "use strict";
 
     function onInit() {
+      this._bus = sap.ui.getCore().getEventBus();
+      
       var oView = this.getView();
       var i18nBundle = this.getOwnerComponent()
         .getModel("i18n")
         .getResourceBundle();
 
       var oJsonModelEmployees = new sap.ui.model.json.JSONModel();
-      // @ts-ignore
       oJsonModelEmployees.loadData(
         "./localService/mockdata/Employees.json",
+        // @ts-ignore
         false
       );
       oView.setModel(oJsonModelEmployees, "employees");
 
       var oJsonModelCountries = new sap.ui.model.json.JSONModel();
-      // @ts-ignore
       oJsonModelCountries.loadData(
         "./localService/mockdata/Countries.json",
+        // @ts-ignore
         false
       );
       oView.setModel(oJsonModelCountries, "countries");
@@ -105,8 +107,9 @@ sap.ui.define(
     async function showOrders(oEvent) {
       var iconPressed = oEvent.getSource();
       var oContext = iconPressed.getBindingContext("employees");
+      // @ts-ignore
       var oView = this.getView();
-      var fragName = "logaligroup.employees.view.fragment.DialogOrders";
+      var fragName = "logaligroup.employees.fragment.DialogOrders";
 
       if (!this._oDialogOrders) {
         await Fragment.load({
@@ -119,7 +122,9 @@ sap.ui.define(
         })
       } 
 
+      // @ts-ignore
       this._oDialogOrders.bindElement("employees>" + oContext.getPath());
+      // @ts-ignore
       this._oDialogOrders.open();        
     }
 
@@ -127,8 +132,13 @@ sap.ui.define(
       this._oDialogOrders.close();
     }
 
+    function showEmployee(oEvent) {
+      var path = oEvent.getSource().getBindingContext("employees").getPath();
+      this._bus.publish("flexible", "showEmployee", path);
+    }
+
     var Main = Controller.extend(
-      "logaligroup.employees.controller.MainView",
+      "logaligroup.employees.controller.MasterEmployee",
       {}
     );
 
@@ -158,6 +168,7 @@ sap.ui.define(
     Main.prototype.onHideCity = onHideCity;
     Main.prototype.showOrders = showOrders;
     Main.prototype.onCloseOrders = onCloseOrders;
+    Main.prototype.showEmployee = showEmployee;
     return Main;
   }
 );

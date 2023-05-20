@@ -33,7 +33,7 @@
                 </Column>
             </columns>
             <items>
-                <ColumnListItem id="_IDGenColumnListItem1">
+                <ColumnListItem id="_IDGenColumnListItem1" type="Navigation" press="showEmployee">
                     <cells>
                         <Label id="_IDGenLabel5" text="{employees>EmployeeID}" />
                         <Label id="_IDGenLabel6" text="{employees>LastName}, {employees>FirstName}" />
