@@ -48,11 +48,17 @@
         </items>
       </FlexBox>
     </Panel>
-    <Panel class="sapUiSizeCompact" backgroundDesign="Transparent" >
+
+    <Panel id="_IDGenPanel3" class="sapUiSizeCompact" backgroundDesign="Transparent">    
     <headerToolbar>
-      <Toolbar >
+      <Toolbar id="_IDGenToolbar2" >
+        <Title id="_IDGenTitle1" text="{i18n>incidence} {= ${employees>Country} !== 'US' ? ${i18n>europe} : ${i18n>us} }"></Title>
+        <ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer>
+        <Button id="_IDGenButton1" text="{i18n>createIncidence}" press="onCreateIncidence"></Button>
       </Toolbar>
     </headerToolbar>
+    </Panel>
+    <Panel id="tableIncidence" class="sapUiNoContentPadding" backgroundDesign="Transparent" >
     
     </Panel>
 

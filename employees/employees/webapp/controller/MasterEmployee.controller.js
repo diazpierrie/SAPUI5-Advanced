@@ -137,13 +137,13 @@ sap.ui.define(
       this._bus.publish("flexible", "showEmployee", path);
     }
 
-    var Main = Controller.extend(
+    var MasterEmployee = Controller.extend(
       "logaligroup.employees.controller.MasterEmployee",
       {}
     );
 
-    (Main.prototype.onInit = function () {}),
-      (Main.prototype.onValidate = function () {
+    (MasterEmployee.prototype.onInit = function () {}),
+      (MasterEmployee.prototype.onValidate = function () {
         var inputEmployee = this.getView().byId("inputEmployee");
         var valueEmployee = inputEmployee.getValue();
 
@@ -160,15 +160,15 @@ sap.ui.define(
         }
       });
 
-    Main.prototype.onInit = onInit;
-    Main.prototype.onFilter = onFilter;
-    Main.prototype.onFilterClear = onFilterClear;
-    Main.prototype.showPostalCode = showPostalCode;
-    Main.prototype.onShowCity = onShowCity;
-    Main.prototype.onHideCity = onHideCity;
-    Main.prototype.showOrders = showOrders;
-    Main.prototype.onCloseOrders = onCloseOrders;
-    Main.prototype.showEmployee = showEmployee;
-    return Main;
+    MasterEmployee.prototype.onInit = onInit;
+    MasterEmployee.prototype.onFilter = onFilter;
+    MasterEmployee.prototype.onFilterClear = onFilterClear;
+    MasterEmployee.prototype.showPostalCode = showPostalCode;
+    MasterEmployee.prototype.onShowCity = onShowCity;
+    MasterEmployee.prototype.onHideCity = onHideCity;
+    MasterEmployee.prototype.showOrders = showOrders;
+    MasterEmployee.prototype.onCloseOrders = onCloseOrders;
+    MasterEmployee.prototype.showEmployee = showEmployee;
+    return MasterEmployee;
   }
 );
