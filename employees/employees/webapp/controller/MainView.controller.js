@@ -3,13 +3,15 @@ sap.ui.define(
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
+    "sap/ui/core/Fragment",
   ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    * @param {typeof sap.ui.model.Filter} Filter
    * @param {typeof sap.ui.model.FilterOperator} FilterOperator
+   * @param {typeof sap.ui.core.Fragment} Fragment
    */
-  function (Controller, Filter, FilterOperator) {
+  function (Controller, Filter, FilterOperator, Fragment) {
     "use strict";
 
     function onInit() {
@@ -100,42 +102,25 @@ sap.ui.define(
       model.setProperty("/visibleBtnHideCity", false);
     }
 
-    function showOrders(oEvent) {
+    async function showOrders(oEvent) {
       var iconPressed = oEvent.getSource();
       var oContext = iconPressed.getBindingContext("employees");
-
-      // if (!this._oDialogOrders) {
-      //   sap.ui.core.Fragment.load({
-      //     name: "logaligroup.employees.view.fragment.DialogOrders",
-      //     type: "XML",
-      //   }).then((o) => {
-      //     this._oDialogOrders = o;
-      //     this.getView().addDependent(this._oDialogOrders);
-      //   });
-      // }
-
-      var control = undefined;
+      var oView = this.getView();
+      var fragName = "logaligroup.employees.view.fragment.DialogOrders";
 
       if (!this._oDialogOrders) {
-       var meme = sap.ui.core.Fragment.load({
-          name: "logaligroup.employees.view.fragment.DialogOrders",
-        }).then((o) => {
-          console.log(o);
-          this._oDialogOrders = o
-          console.log(this._oDialogOrders);
-          this._oDialogOrders.bindElement("employees>" + oContext.getPath());
-          this._oDialogOrders.open();
-        });
-      }
+        await Fragment.load({
+          id: oView.getId(),
+          name: fragName,
+          controller: this,
+        }).then((oDialog) => {
+          this._oDialogOrders = oDialog;
+          oView.addDependent(oDialog);
+        })
+      } 
 
-      // if (!control) {
-      //   var meme = this.loadFragment({name: "logaligroup.employees.view.fragment.DialogOrders"}).then(function() {
-
-      //     console.log(control);
-      //     meme.bindElement("employees" + oContext.getPath());
-      //     meme.open()
-      //   }).catch(o => console.log(o));
-      // }
+      this._oDialogOrders.bindElement("employees>" + oContext.getPath());
+      this._oDialogOrders.open();        
     }
 
     function onCloseOrders() {
