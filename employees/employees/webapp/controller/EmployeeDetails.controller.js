@@ -40,7 +40,6 @@ sap.ui.define(
         SapId : contextObj.SapId,
         EmployeeId : contextObj.EmployeeId
       });
-
     }
 
     function onSaveIncidence(oEvent) {
