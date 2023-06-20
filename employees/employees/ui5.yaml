@@ -16,6 +16,9 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
+          - path: /sap/opu/odata/sap/YSAPUI5_SRV_01/
+            url: http://erp13.sap4practice.com:9037
+            destination: logaligroupERP
           - path: /V2
             url: https://services.odata.org
             destination: Northwind

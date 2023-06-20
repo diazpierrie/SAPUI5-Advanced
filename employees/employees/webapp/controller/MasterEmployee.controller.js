@@ -22,13 +22,13 @@ sap.ui.define(
         .getModel("i18n")
         .getResourceBundle();
 
-      var oJsonModelEmployees = new sap.ui.model.json.JSONModel();
-      oJsonModelEmployees.loadData(
-        "./localService/mockdata/Employees.json",
-        // @ts-ignore
-        false
-      );
-      oView.setModel(oJsonModelEmployees, "employees");
+      // var oJsonModelEmployees = new sap.ui.model.json.JSONModel();
+      // oJsonModelEmployees.loadData(
+      //   "./localService/mockdata/Employees.json",
+      //   // @ts-ignore
+      //   false
+      // );
+      // oView.setModel(oJsonModelEmployees, "jsonEmployees");
 
       var oJsonModelCountries = new sap.ui.model.json.JSONModel();
       oJsonModelCountries.loadData(
@@ -84,7 +84,7 @@ sap.ui.define(
 
     function showPostalCode(oEvent) {
       var itemPressed = oEvent.getSource();
-      var oContext = itemPressed.getBindingContext("employees");
+      var oContext = itemPressed.getBindingContext("odataNorthwind");
       var objectContext = oContext.getObject();
 
       sap.m.MessageToast.show(objectContext.PostalCode);
@@ -106,7 +106,7 @@ sap.ui.define(
 
     async function showOrders(oEvent) {
       var iconPressed = oEvent.getSource();
-      var oContext = iconPressed.getBindingContext("employees");
+      var oContext = iconPressed.getBindingContext("odataNorthwind");
       // @ts-ignore
       var oView = this.getView();
       var fragName = "logaligroup.employees.fragment.DialogOrders";
@@ -121,9 +121,13 @@ sap.ui.define(
           oView.addDependent(oDialog);
         })
       } 
+      else
+      {
+        this._oDialogOrders.byId("_IDGenTable1-Dialog").destroyItems();
+      }
 
       // @ts-ignore
-      this._oDialogOrders.bindElement("employees>" + oContext.getPath());
+      this._oDialogOrders.bindElement("odataNorthwind>" + oContext.getPath());
       // @ts-ignore
       this._oDialogOrders.open();        
     }
@@ -133,7 +137,7 @@ sap.ui.define(
     }
 
     function showEmployee(oEvent) {
-      var path = oEvent.getSource().getBindingContext("employees").getPath();
+      var path = oEvent.getSource().getBindingContext("odataNorthwind").getPath();
       this._bus.publish("flexible", "showEmployee", path);
     }
 

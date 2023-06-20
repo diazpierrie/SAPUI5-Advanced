@@ -4,7 +4,7 @@
         <Button id="btnShowCity" text="{i18n>btnShowCity}" press="onShowCity" visible="{config>/visibleBtnShowCity}" />
         <Button id="btnHideCity" text="{i18n>btnHideCity}" press="onHideCity" visible="{config>/visibleBtnHideCity}" />
 
-        <Table id="tableEmployee" items="{employees>/Employees}">
+        <Table id="tableEmployee" items="{odataNorthwind>/Employees}">
             <columns>
                 <Column id="_IDGenColumn1" visible="{config>/visibleID}">
                     <header>
@@ -35,10 +35,10 @@
             <items>
                 <ColumnListItem id="_IDGenColumnListItem1" type="Navigation" press="showEmployee">
                     <cells>
-                        <Label id="_IDGenLabel5" text="{employees>EmployeeID}" />
-                        <Label id="_IDGenLabel6" text="{employees>LastName}, {employees>FirstName}" />
-                        <Label id="_IDGenLabel7" text="{employees>Country}" />
-                        <Label id="_IDGenLabel8" text="{employees>City}" />
+                        <Label id="_IDGenLabel5" text="{odataNorthwind>EmployeeID}" />
+                        <Label id="_IDGenLabel6" text="{odataNorthwind>LastName}, {odataNorthwind>FirstName}" />
+                        <Label id="_IDGenLabel7" text="{odataNorthwind>Country}" />
+                        <Label id="_IDGenLabel8" text="{odataNorthwind>City}" />
                         <core:Icon id="_IDGenIcon1" src="sap-icon://show" press="showOrders"></core:Icon>
                     </cells>
                 </ColumnListItem>

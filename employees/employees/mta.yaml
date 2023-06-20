@@ -47,9 +47,23 @@ modules:
       - logaligroupemployees.zip
       name: logaligroupemployees
       target-path: resources/
+    - artifacts:
+      - project1.zip
+      name: project1
+      target-path: resources/
 - name: logaligroupemployees
   type: html5
   path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: project1
+  type: html5
+  path: project1
   build-parameters:
     build-result: dist
     builder: custom

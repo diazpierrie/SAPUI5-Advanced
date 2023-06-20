@@ -7,18 +7,18 @@
     <Panel id="_IDGenPanel1">
       <FlexBox id="_IDGenFlexBox1" height="65px" alignItems="Center" justifyContent="Center">
         <items>
-          <Text id="_IDGenText1" text="{employees>LastName}, {employees>FirstName}" class="boldText"/>
+          <Text id="_IDGenText1" text="{odataNorthwind>TitleOfCourtesy} {odataNorthwind>FirstName} {odataNorthwind>LastName}" class="boldText"/>
         </items>
       </FlexBox>
       <FlexBox id="_IDGenFlexBox2" height="65px" alignItems="Start" justifyContent="SpaceBetween">
         <items>
           <VBox id="_IDGenVBox1">
             <Text id="_IDGenText2" text="{i18n>employeeID}" class="boldText sapUiTinyMarginEnd"/>
-            <Text id="_IDGenText3" text="{employees>EmployeeID}"/>
+            <Text id="_IDGenText3" text="{odataNorthwind>EmployeeID}"/>
           </VBox>
           <VBox id="_IDGenVBox2">
             <Text id="_IDGenText4" text="{i18n>titleEmployee}" class="boldText sapUiTinyMarginEnd"/>
-            <Text id="_IDGenText5" text="{employees>Title}"/>
+            <Text id="_IDGenText5" text="{odataNorthwind>Title}"/>
           </VBox>
         </items>
       </FlexBox>
@@ -26,21 +26,21 @@
         <items>
           <HBox id="_IDGenHBox1">
             <Text id="_IDGenText6" text="{i18n>countryCode}" class="boldText sapUiTinyMarginEnd"/>
-            <Text id="_IDGenText7" text="{employees>Country}"/>
+            <Text id="_IDGenText7" text="{odataNorthwind>Country}"/>
             <layoutData>
               <FlexItemData id="_IDGenFlexItemData1" growFactor="3"></FlexItemData>
             </layoutData>
           </HBox>
           <HBox id="_IDGenFlexBox4" direction="Row" alignItems="Start">
             <Text id="_IDGenText8" text="{i18n>city}" class="boldText sapUiTinyMarginEnd"/>
-            <Text id="_IDGenText9" text="{employees>City}"/>
+            <Text id="_IDGenText9" text="{odataNorthwind>City}"/>
             <layoutData>
               <FlexItemData id="_IDGenFlexItemData2" growFactor="3"></FlexItemData>
             </layoutData>
           </HBox>
           <HBox id="_IDGenHBox2" direction="Row" alignItems="Start">
             <Text id="_IDGenText10" text="{i18n>postalCode}" class="boldText sapUiTinyMarginEnd"/>
-            <Text id="_IDGenText11" text="{employees>PostalCode}"/>
+            <Text id="_IDGenText11" text="{odataNorthwind>PostalCode}"/>
             <layoutData>
               <FlexItemData id="_IDGenFlexItemData3" growFactor="1"></FlexItemData>
             </layoutData>
@@ -52,7 +52,7 @@
     <Panel id="_IDGenPanel3" class="sapUiSizeCompact" backgroundDesign="Transparent">    
     <headerToolbar>
       <Toolbar id="_IDGenToolbar2" >
-        <Title id="_IDGenTitle1" text="{i18n>incidence} {= ${employees>Country} !== 'US' ? ${i18n>europe} : ${i18n>us} }"></Title>
+        <Title id="_IDGenTitle1" text="{i18n>incidence} {= ${odataNorthwind>Country} !== 'USA' ? ${i18n>europe} : ${i18n>us} }"></Title>
         <ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer>
         <Button id="_IDGenButton1" text="{i18n>createIncidence}" press="onCreateIncidence"></Button>
       </Toolbar>
